@@ -12,7 +12,7 @@
 
   <!-- File 에 로그를 찍는 Appender -->
   <appender name="file" class="ch.qos.logback.core.FileAppender">
-    <file>/logs/prj06.log</file>
+    <file>/Users/ialee/Desktop/logs/prj06.log</file>
     <append>true</append>
     <immediateFlush>true</immediateFlush>
     <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
@@ -34,7 +34,7 @@
   </appender>
 
 	<!-- Application Loggers -->
-	<logger name="com.gdu.prj06" level="info"/>
+	<logger name="com.gdu" level="info"/>
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework" level="info"/>
@@ -52,7 +52,7 @@
 	<root>
 		<priority value="warn" />
 		<appender-ref ref="console" />
-<!--    <appender-ref ref="file" />-->
+      <appender-ref ref="file"/>
 <!--    <appender-ref ref="rolling" />-->
 	</root>
 

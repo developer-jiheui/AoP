@@ -25,7 +25,7 @@ public class MyAroundAspect {
     @Around("setPointCut()") //Around 가 setPointCut을 연결해줌
     public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         //@TODO Check this StringUtil repeat
-        log.info("{}", StringUtils.repeat("-", 80));
+        log.info("{}", StringUtils.repeat("-", 80));                               //동작 이전
 
         Object obj = proceedingJoinPoint.proceed();                                           // 동작 시점
 

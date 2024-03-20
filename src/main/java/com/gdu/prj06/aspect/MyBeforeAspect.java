@@ -1,14 +1,21 @@
 package com.gdu.prj06.aspect;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.Map;
 
+@Slf4j
+@Aspect
+@Component
 public class MyBeforeAspect {
 
     //PointCut
@@ -16,7 +23,7 @@ public class MyBeforeAspect {
     public void setPointCut() {
     }
 
-    //Advice
+
     /*
      *  Before Advice Method 작성 방법
      * 1. 반환타임 : void
@@ -24,6 +31,7 @@ public class MyBeforeAspect {
      * 3. 매개변수 : JoinPoint 타입 객체
      *
      * */
+    //Advice
     @Before("setPointCut()")
     public void myBeforeAdvice(JoinPoint joinPoint) {
 
@@ -34,5 +42,19 @@ public class MyBeforeAspect {
 
         //parameters are string array
         Map<String, String[]> params = request.getParameterMap();
+
+        String str = "";
+
+        if(params.isEmpty()){
+            str += "No Parameter";
+        }else{
+            for(Map.Entry<String, String[]> entry : params.entrySet()){
+                str += entry.getKey() + ":" + Arrays.toString(entry.getValue()) + " ";
+            }
+        }
+
+        log.info("{} | {}",request.getMethod(),request.getRequestURI());
+        log.info("{}",str);
+
     }
 }
